@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact Alaadin - AI Specialist and Data Engineer for collaboration and project inquiries">
+    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <title>Contact - Alaadin Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* Page-specific styles */
+        .page-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        /* Contact Page Styles */
+        .contact-section {
+            padding: 5rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        /* Contact Info Side */
+        .contact-info-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+        }
+
+        .contact-info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-fast);
+        }
+
+        .contact-info-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(5px);
+        }
+
+        [dir="rtl"] .contact-info-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-gradient);
+            border-radius: var(--border-radius-md);
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-info-content p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .contact-info-content a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .contact-info-content a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Social Links */
+        .social-section {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+        }
+
+        .social-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .social-link-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            transition: all var(--transition-fast);
+        }
+
+        .social-link-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .social-link-card i {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .social-link-card span {
+            font-size: 0.9375rem;
+        }
+
+        /* Availability Card */
+        .availability-card {
+            background: var(--accent-gradient);
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .availability-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .availability-card p {
+            opacity: 0.9;
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+        }
+
+        .availability-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.875rem;
+        }
+
+        .availability-status::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Contact Form Side */
+        .contact-form-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+        }
+
+        .contact-form-card h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-card>p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236366f1' viewBox='0 0 16 16'%3E%3Cpath d='M8 10.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        [dir="rtl"] .form-select {
+            background-position: left 1rem center;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-primary);
+        }
+
+        .form-checkbox-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: var(--border-radius-md);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all var(--transition-fast);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 5rem;
+        }
+
+        .faq-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            transition: all var(--transition-fast);
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-glow);
+        }
+
+        .faq-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .faq-item h4 i {
+            color: var(--accent-primary);
+            margin-top: 0.125rem;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-left: 2rem;
+        }
+
+        [dir="rtl"] .faq-item p {
+            padding-left: 0;
+            padding-right: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .social-links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                    <li><a href="experience.html" class="nav-link" data-translate="nav.experience">Experience</a></li>
+                    <li><a href="education.html" class="nav-link" data-translate="nav.education">Education</a></li>
+                    <li><a href="skills.html" class="nav-link" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                    <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+                    <li><a href="contact.html" class="nav-link active" data-translate="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Contact</span>
+                </nav>
+                <h1 class="page-title">
+                    <span>Get In </span>
+                    <span class="gradient-text">Touch</span>
+                </h1>
+                <p class="page-description">
+                    Have a project in mind? Let's discuss how we can work together to bring your ideas to life
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Contact Info Side -->
+                <div class="contact-info-side">
+
+                    <!-- Contact Details -->
+                    <div class="contact-info-card">
+                        <h3>Contact Information</h3>
+                        <div class="contact-info-list">
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:alaadinalynaey@gmail.com">alaadinalynaey@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:+967777715203">+967 777 715 203</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>Location</h4>
+                                    <p>Yemen</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>Working Hours</h4>
+                                    <p>Available for remote work worldwide</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="social-section">
+                        <h3>Connect With Me</h3>
+                        <div class="social-links-grid">
+                            <a href="https://www.linkedin.com/in/alaadin-al-ynaey-179a88342" target="_blank"
+                                class="social-link-card">
+                                <i class="fab fa-linkedin-in"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/AladdinAlynaey" target="_blank" class="social-link-card">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://wa.me/+967777715203" target="_blank" class="social-link-card">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="https://t.me/AlaadinAY" target="_blank" class="social-link-card">
+                                <i class="fab fa-telegram-plane"></i>
+                                <span>Telegram</span>
+                            </a>
+                            <a href="https://www.kaggle.com/aladdinay" target="_blank" class="social-link-card">
+                                <i class="fab fa-kaggle"></i>
+                                <span>Kaggle</span>
+                            </a>
+                            <a href="mailto:alaadinalynaey@gmail.com" class="social-link-card">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Availability Card -->
+                    <div class="availability-card">
+                        <h3>Currently Available</h3>
+                        <p>I'm open to new opportunities and exciting projects</p>
+                        <div class="availability-status">
+                            <span>Open for work</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Side -->
+                <div class="contact-form-card">
+                    <h3>Send Me a Message</h3>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+
+                    <form id="contactForm" action="https://formsubmit.co/alaadinalynaey@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Contact from Portfolio Website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://your-portfolio-url.com/thank-you.html">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input"
+                                    placeholder="+1 234 567 890">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject *</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="Project Inquiry">Project Inquiry</option>
+                                <option value="Job Opportunity">Job Opportunity</option>
+                                <option value="Collaboration">Collaboration</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="AI/ML Services">AI/ML Services</option>
+                                <option value="Data Engineering">Data Engineering</option>
+                                <option value="General Question">General Question</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="budget">Budget Range (if applicable)</label>
+                            <select id="budget" name="budget" class="form-select">
+                                <option value="" disabled selected>Select budget range</option>
+                                <option value="Under $500">Under $500</option>
+                                <option value="$500 - $1,000">$500 - $1,000</option>
+                                <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                                <option value="$10,000+">$10,000+</option>
+                                <option value="Not Sure / Need Quote">Not Sure / Need Quote</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message *</label>
+                            <textarea id="message" name="message" class="form-textarea"
+                                placeholder="Tell me about your project, requirements, timeline, or any questions you have..."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+                            <label for="newsletter" class="form-checkbox-label">Keep me updated on your latest projects
+                                and insights</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> What services do you offer?</h4>
+                        <p>I specialize in AI/ML development, RAG systems, data engineering, ETL pipelines, and custom
+                            AI solutions. I also offer training and consultation services.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> How do you handle project communication?</h4>
+                        <p>I use clear, regular communication via email, messaging apps, and video calls. I provide
+                            project updates and am always available for questions and discussions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> What is your typical project timeline?</h4>
+                        <p>Timelines vary based on project complexity. Small projects may take 1-2 weeks, while larger
+                            ones can take several months. I provide detailed estimates after understanding your
+                            requirements.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> Do you work with international clients?</h4>
+                        <p>Yes! I work with clients globally and am comfortable with different time zones. Remote
+                            collaboration is my standard mode of operation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> Can you work on existing projects?</h4>
+                        <p>Absolutely. I can join ongoing projects, help with code reviews, optimize existing systems,
+                            or add new features to your current solutions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4><i class="fas fa-question-circle"></i> How do you ensure project quality?</h4>
+                        <p>I follow best practices in code quality, documentation, testing, and use version control. I
+                            also provide ongoing support after project completion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

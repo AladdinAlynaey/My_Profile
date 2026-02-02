@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Query Builder by Alaadin">
+    <link rel="icon" type="image/png" href="../../imgs/logo.png">
+    <title>AI Query Builder - Alaadin Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/project-detail.css">
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="../../index.html" class="logo"><img src="../../imgs/me.jpg" alt="Alaadin" class="logo-image"><span
+                    class="logo-text">Alaadin</span></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../../index.html#hero" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#experience" class="nav-link">Experience</a></li>
+                    <li><a href="../../index.html#education" class="nav-link">Education</a></li>
+                    <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../../projects.html" class="nav-link active">Projects</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher"><button class="lang-btn active" data-lang="en">EN</button><button
+                        class="lang-btn" data-lang="ar">عربي</button></div>
+                <button class="control-btn" id="themeToggle" title="Toggle Theme"><i class="fas fa-sun"></i></button>
+                <div class="menu-toggle"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-hero-content">
+                <nav class="breadcrumb"><a href="../../index.html">Home</a><span>/</span><a
+                        href="../../projects.html">Projects</a><span>/</span><span>AI Query Builder</span></nav>
+                <h1 class="project-title"><span>AI </span><span class="gradient-text">Query Builder</span></h1>
+                <div class="project-meta">
+                    <div class="project-meta-item"><i class="fas fa-calendar"></i><span>2024</span></div>
+                    <div class="project-meta-item"><i class="fas fa-folder"></i><span>NLP • SQL</span></div>
+                </div>
+                <p class="project-description-hero">Schema-aware natural language interface for database queries.
+                    Converts plain English questions into optimized SQL queries with automatic schema understanding.</p>
+                <div class="project-tags-large">
+                    <span class="project-tag-large">NLP</span>
+                    <span class="project-tag-large">SQL</span>
+                    <span class="project-tag-large">AI</span>
+                </div>
+                <div class="project-actions-hero">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> View Source</a>
+                    <a href="../../projects.html" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> All
+                        Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots-section">
+        <div class="container">
+            <h2 class="screenshots-title"><span>Project </span><span class="gradient-text">Screenshots</span></h2>
+            <div class="card-fan-container">
+                <div class="card-fan" id="cardFan">
+                    <div class="card-fan-item placeholder" data-index="1"><img src="images/screenshot-1.png"
+                            alt="Screenshot 1" onerror="this.style.display='none'"><span class="card-number">Screenshot
+                            1</span></div>
+                    <div class="card-fan-item placeholder" data-index="2"><img src="images/screenshot-2.png"
+                            alt="Screenshot 2" onerror="this.style.display='none'"><span class="card-number">Screenshot
+                            2</span></div>
+                    <div class="card-fan-item placeholder" data-index="3"><img src="images/screenshot-3.png"
+                            alt="Screenshot 3" onerror="this.style.display='none'"><span class="card-number">Screenshot
+                            3</span></div>
+                    <div class="card-fan-item placeholder" data-index="4"><img src="images/screenshot-4.png"
+                            alt="Screenshot 4" onerror="this.style.display='none'"><span class="card-number">Screenshot
+                            4</span></div>
+                    <div class="card-fan-item placeholder" data-index="5"><img src="images/screenshot-5.png"
+                            alt="Screenshot 5" onerror="this.style.display='none'"><span class="card-number">Screenshot
+                            5</span></div>
+                </div>
+            </div>
+            <p class="fan-instruction"><i class="fas fa-mouse"></i> Click to spread cards &bull; Click image to enlarge
+            </p>
+        </div>
+    </section>
+
+    <section class="project-details-section">
+        <div class="container">
+            <div class="project-details-grid">
+                <div class="project-about">
+                    <h2>About This Project</h2>
+                    <p>The AI Query Builder bridges the gap between non-technical users and databases. Users can ask
+                        questions in plain English, and the system automatically generates efficient SQL queries based
+                        on the database schema.</p>
+                    <p>The system analyzes the database structure and understands relationships between tables to
+                        generate accurate, optimized queries.</p>
+                    <div class="project-features">
+                        <h3>Key Features</h3>
+                        <div class="features-list">
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Natural language to SQL
+                                    conversion</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Automatic schema
+                                    detection</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Query optimization</span>
+                            </div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Multi-table join
+                                    support</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Query explanation in
+                                    plain English</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-sidebar">
+                    <div class="sidebar-card glass-card">
+                        <h3>Technology Stack</h3>
+                        <div class="tech-list">
+                            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-item"><i class="fas fa-brain"></i> LangChain</span>
+                            <span class="tech-item"><i class="fas fa-database"></i> SQL</span>
+                            <span class="tech-item"><i class="fas fa-flask"></i> Flask</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-card glass-card">
+                        <h3>Project Info</h3>
+                        <div class="info-list">
+                            <div class="info-item"><span>Category</span><span>AI, Database</span></div>
+                            <div class="info-item"><span>Status</span><span>Completed</span></div>
+                            <div class="info-item"><span>Year</span><span>2024</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+    <button class="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    <script src="../../js/translations.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/chat-widget.js"></script>
+    <script src="../../js/project-detail.js"></script>
+</body>
+
+</html>

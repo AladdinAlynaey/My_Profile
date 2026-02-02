@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Microsoft's Maia 100 AI chip reduces token generation costs by 30% and is now deployed in US data centers">
+    <link rel="icon" type="image/png" href="../../imgs/logo.png">
+    <title>Microsoft's Maia 100 AI Chip - Alaadin Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/blogs.css">
+
+    <style>
+        .page-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="../../index.html" class="logo">
+                <img src="../../imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../../about.html" class="nav-link">About</a></li>
+                    <li><a href="../../experience.html" class="nav-link">Experience</a></li>
+                    <li><a href="../../education.html" class="nav-link">Education</a></li>
+                    <li><a href="../../skills.html" class="nav-link">Skills</a></li>
+                    <li><a href="../../projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="../../blogs.html" class="nav-link active">Blogs</a></li>
+                    <li><a href="../../contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content" style="text-align: center;">
+                <nav class="breadcrumb"
+                    style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <a href="../../index.html" style="color: var(--text-secondary);">Home</a>
+                    <span style="color: var(--text-muted);">/</span>
+                    <a href="../../blogs.html" style="color: var(--text-secondary);">Blogs</a>
+                    <span style="color: var(--text-muted);">/</span>
+                    <span style="color: var(--text-muted);">Microsoft Maia 100</span>
+                </nav>
+                <span class="blog-category" style="margin-bottom: 1rem; display: inline-block;">Hardware</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Detail Section -->
+    <section class="blog-detail-section">
+        <div class="container">
+            <div class="blog-detail-container">
+                <a href="../../blogs.html" class="blog-back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to All Blogs
+                </a>
+
+                <header class="blog-detail-header">
+                    <h1>Microsoft's Maia 100 AI Chip Slashes Token Costs by 30%</h1>
+                    <div class="blog-detail-meta">
+                        <span class="blog-date"><i class="far fa-calendar"></i> February 1, 2026</span>
+                        <span class="blog-date"><i class="far fa-clock"></i> 4 min read</span>
+                        <span class="blog-date"><i class="far fa-user"></i> Alaadin</span>
+                    </div>
+                </header>
+
+                <div class="blog-detail-image">
+                    <img src="../../imgs/blogs/maia-chip.png" alt="Microsoft Maia 100 AI Chip">
+                </div>
+
+                <article class="blog-detail-content">
+                    <p>
+                        In a significant move that could reshape the economics of AI infrastructure,
+                        <strong>Microsoft</strong>
+                        has deployed its custom-designed <strong>Maia 100 AI chip</strong> across US data centers. The
+                        chip
+                        reportedly reduces token generation costs by an impressive <strong>30%</strong>, potentially
+                        making
+                        AI services more affordable for businesses and consumers alike.
+                    </p>
+
+                    <h2>Why Custom Silicon Matters</h2>
+                    <p>
+                        As AI workloads continue to grow exponentially, the cost of running inference at scale has
+                        become
+                        a critical concern for cloud providers. By designing its own AI accelerator, Microsoft aims to:
+                    </p>
+                    <ul>
+                        <li><strong>Reduce dependency</strong> on third-party chip manufacturers like NVIDIA</li>
+                        <li><strong>Optimize for specific workloads</strong> running on Azure cloud services</li>
+                        <li><strong>Pass cost savings</strong> to customers using Microsoft's AI services</li>
+                        <li><strong>Gain competitive advantage</strong> in the rapidly evolving cloud AI market</li>
+                    </ul>
+
+                    <h2>The 30% Cost Reduction</h2>
+                    <p>
+                        The headline figure that's capturing industry attention is the <strong>30% reduction in token
+                            generation costs</strong>. For organizations running large-scale AI operations, this
+                        translates to
+                        significant savings:
+                    </p>
+
+                    <blockquote>
+                        "A 30% cost reduction might sound modest, but when you're processing billions of tokens daily,
+                        the savings are substantial. This could fundamentally change the economics of AI deployment."
+                    </blockquote>
+
+                    <p>
+                        Token generation is a key metric in AI computing, particularly for large language models. Every
+                        word, every response generated by AI systems like ChatGPT or Claude requires token processing,
+                        making this metric crucial for cost calculations.
+                    </p>
+
+                    <h2>Deployment Status</h2>
+                    <p>
+                        The Maia 100 is now operational in Microsoft's US data centers, marking the transition from
+                        testing to production deployment. This rollout signals Microsoft's confidence in the chip's
+                        stability and performance characteristics.
+                    </p>
+
+                    <h2>Industry Implications</h2>
+                    <p>
+                        Microsoft's move follows similar efforts by other tech giants:
+                    </p>
+                    <ul>
+                        <li><strong>Google's TPU</strong> - Tensor Processing Units for AI workloads</li>
+                        <li><strong>Amazon's Trainium/Inferentia</strong> - Custom chips for AWS AI services</li>
+                        <li><strong>Meta's MTIA</strong> - Meta Training and Inference Accelerator</li>
+                    </ul>
+
+                    <p>
+                        The race for AI chip supremacy is heating up, and the winner will likely be determined not
+                        just by performance, but by cost efficiency and power consumption.
+                    </p>
+
+                    <h2>What This Means for Developers</h2>
+                    <p>
+                        For developers and organizations using Azure's AI services, the Maia 100 deployment could mean:
+                    </p>
+                    <ul>
+                        <li>Lower costs for API calls to Azure OpenAI Service</li>
+                        <li>Improved latency for inference workloads</li>
+                        <li>Better scaling economics for AI-intensive applications</li>
+                        <li>More competitive pricing compared to alternative cloud providers</li>
+                    </ul>
+
+                    <p>
+                        As AI becomes increasingly central to business operations, the infrastructure that powers it
+                        becomes just as important as the models themselves. Microsoft's Maia 100 represents a
+                        significant
+                        step toward more sustainable and affordable AI computing.
+                    </p>
+                </article>
+
+                <div class="blog-tags">
+                    <span class="blog-tag"><i class="fas fa-tag"></i> Microsoft</span>
+                    <span class="blog-tag"><i class="fas fa-tag"></i> AI Hardware</span>
+                    <span class="blog-tag"><i class="fas fa-tag"></i> Maia 100</span>
+                    <span class="blog-tag"><i class="fas fa-tag"></i> Cloud Computing</span>
+                    <span class="blog-tag"><i class="fas fa-tag"></i> Azure</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="../../css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="../../js/translations.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/chat-widget.js"></script>
+</body>
+
+</html>

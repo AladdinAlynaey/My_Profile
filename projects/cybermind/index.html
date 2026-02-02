@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberMind - AI-Powered Cybersecurity Chat Assistant by Alaadin">
+    <link rel="icon" type="image/png" href="../../imgs/logo.png">
+    <title>CyberMind - Alaadin Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <style>
+        /* Project Detail Page Styles */
+        .project-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .project-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        .project-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .project-meta-item i {
+            color: var(--accent-primary);
+        }
+
+        .project-description-hero {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags-large {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-tag-large {
+            padding: 0.5rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .project-tag-large:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .project-actions-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Screenshots Section with Card Fan Effect */
+        .screenshots-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .screenshots-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .card-fan-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 450px;
+            perspective: 1000px;
+            padding: 2rem;
+        }
+
+        .card-fan {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .card-fan-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center bottom;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+        }
+
+        .card-fan-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .card-fan-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+            z-index: 1;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .card-fan-item:hover::before {
+            opacity: 1;
+        }
+
+        .card-fan-item .card-number {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .card-fan-item:hover .card-number {
+            opacity: 1;
+        }
+
+        /* Stacked state (default) */
+        .card-fan-item:nth-child(1) {
+            transform: rotate(-8deg) translateX(-20px);
+            z-index: 5;
+        }
+
+        .card-fan-item:nth-child(2) {
+            transform: rotate(-4deg) translateX(-10px);
+            z-index: 4;
+        }
+
+        .card-fan-item:nth-child(3) {
+            transform: rotate(0deg);
+            z-index: 3;
+        }
+
+        .card-fan-item:nth-child(4) {
+            transform: rotate(4deg) translateX(10px);
+            z-index: 2;
+        }
+
+        .card-fan-item:nth-child(5) {
+            transform: rotate(8deg) translateX(20px);
+            z-index: 1;
+        }
+
+        /* Spread state on hover/click */
+        .card-fan.spread .card-fan-item:nth-child(1) {
+            transform: rotate(-20deg) translateX(-180px) translateY(-20px);
+            z-index: 1;
+        }
+
+        .card-fan.spread .card-fan-item:nth-child(2) {
+            transform: rotate(-10deg) translateX(-90px) translateY(-10px);
+            z-index: 2;
+        }
+
+        .card-fan.spread .card-fan-item:nth-child(3) {
+            transform: rotate(0deg) translateY(0);
+            z-index: 3;
+        }
+
+        .card-fan.spread .card-fan-item:nth-child(4) {
+            transform: rotate(10deg) translateX(90px) translateY(-10px);
+            z-index: 4;
+        }
+
+        .card-fan.spread .card-fan-item:nth-child(5) {
+            transform: rotate(20deg) translateX(180px) translateY(-20px);
+            z-index: 5;
+        }
+
+        .card-fan.spread .card-fan-item:hover {
+            transform: scale(1.08) translateY(-30px) !important;
+            z-index: 10 !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-glow);
+        }
+
+        /* Image placeholder styling */
+        .card-fan-item.placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%);
+        }
+
+        .card-fan-item.placeholder::after {
+            content: 'Screenshot ' attr(data-index);
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Mobile Card Fan */
+        @media (max-width: 992px) {
+            .card-fan-container {
+                min-height: 400px;
+            }
+
+            .card-fan {
+                width: 280px;
+                height: 200px;
+            }
+
+            .card-fan-item:nth-child(1) {
+                transform: rotate(-6deg) translateX(-15px);
+            }
+
+            .card-fan-item:nth-child(2) {
+                transform: rotate(-3deg) translateX(-8px);
+            }
+
+            .card-fan-item:nth-child(3) {
+                transform: rotate(0deg);
+            }
+
+            .card-fan-item:nth-child(4) {
+                transform: rotate(3deg) translateX(8px);
+            }
+
+            .card-fan-item:nth-child(5) {
+                transform: rotate(6deg) translateX(15px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(1) {
+                transform: rotate(-15deg) translateX(-100px) translateY(-15px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(2) {
+                transform: rotate(-7deg) translateX(-50px) translateY(-8px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(3) {
+                transform: rotate(0deg) translateY(0);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(4) {
+                transform: rotate(7deg) translateX(50px) translateY(-8px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(5) {
+                transform: rotate(15deg) translateX(100px) translateY(-15px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-fan-container {
+                min-height: 350px;
+                padding: 1rem;
+            }
+
+            .card-fan {
+                width: 220px;
+                height: 160px;
+            }
+
+            .card-fan-item:nth-child(1) {
+                transform: rotate(-4deg) translateX(-10px);
+            }
+
+            .card-fan-item:nth-child(2) {
+                transform: rotate(-2deg) translateX(-5px);
+            }
+
+            .card-fan-item:nth-child(3) {
+                transform: rotate(0deg);
+            }
+
+            .card-fan-item:nth-child(4) {
+                transform: rotate(2deg) translateX(5px);
+            }
+
+            .card-fan-item:nth-child(5) {
+                transform: rotate(4deg) translateX(10px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(1) {
+                transform: rotate(-12deg) translateX(-60px) translateY(-10px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(2) {
+                transform: rotate(-6deg) translateX(-30px) translateY(-5px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(3) {
+                transform: rotate(0deg) translateY(0);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(4) {
+                transform: rotate(6deg) translateX(30px) translateY(-5px);
+            }
+
+            .card-fan.spread .card-fan-item:nth-child(5) {
+                transform: rotate(12deg) translateX(60px) translateY(-10px);
+            }
+        }
+
+        .fan-instruction {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            margin-top: 2rem;
+        }
+
+        .fan-instruction i {
+            margin-right: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        /* Project Details Section */
+        .project-details-section {
+            padding: 5rem 0;
+        }
+
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .project-about h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-about p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-item i {
+            color: var(--accent-primary);
+            margin-top: 0.25rem;
+        }
+
+        /* Project Sidebar */
+        .project-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-card {
+            padding: 1.5rem;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .tech-item:hover {
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .tech-item i {
+            font-size: 1rem;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-item span:first-child {
+            color: var(--text-muted);
+        }
+
+        .info-item span:last-child {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Related Projects */
+        .related-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .related-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .project-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .sidebar-card {
+                flex: 1;
+                min-width: 280px;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .project-meta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .project-actions-hero {
+                flex-direction: column;
+            }
+
+            .project-actions-hero .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sidebar-card {
+                min-width: 100%;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="../../index.html" class="logo">
+                <img src="../../imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../../index.html#hero" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link" data-translate="nav.about">About</a></li>
+                    <li><a href="../../index.html#experience" class="nav-link"
+                            data-translate="nav.experience">Experience</a></li>
+                    <li><a href="../../index.html#education" class="nav-link"
+                            data-translate="nav.education">Education</a>
+                    </li>
+                    <li><a href="../../index.html#skills" class="nav-link" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="../../projects.html" class="nav-link active" data-translate="nav.projects">Projects</a>
+                    </li>
+                    <li><a href="../../index.html#contact" class="nav-link" data-translate="nav.contact">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-hero-content">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../../projects.html">Projects</a>
+                    <span>/</span>
+                    <span>CyberMind</span>
+                </nav>
+
+                <h1 class="project-title">
+                    <span>CyberMind: </span>
+                    <span class="gradient-text">AI-Powered Cybersecurity</span>
+                </h1>
+
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2024</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-folder"></i>
+                        <span>AI/ML • Cybersecurity</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>3 months development</span>
+                    </div>
+                </div>
+
+                <p class="project-description-hero">
+                    An intelligent cybersecurity assistant that leverages advanced AI models to provide real-time
+                    threat intelligence, security analysis, and recommendations. Integrated with global security
+                    blogs for up-to-date threat information and best practices.
+                </p>
+
+                <div class="project-tags-large">
+                    <span class="project-tag-large">Featured</span>
+                    <span class="project-tag-large">AI/ML</span>
+                    <span class="project-tag-large">Cybersecurity</span>
+                    <span class="project-tag-large">LangChain</span>
+                    <span class="project-tag-large">RAG</span>
+                </div>
+
+                <div class="project-actions-hero">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> View Source</a>
+                    <a href="../../projects.html" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> All
+                        Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots-section">
+        <div class="container">
+            <h2 class="screenshots-title">
+                <span>Project </span>
+                <span class="gradient-text">Screenshots</span>
+            </h2>
+
+            <div class="card-fan-container">
+                <div class="card-fan" id="cardFan">
+                    <div class="card-fan-item placeholder" data-index="1">
+                        <img src="images/screenshot-1.png" alt="Screenshot 1" onerror="this.style.display='none'">
+                        <span class="card-number">Screenshot 1</span>
+                    </div>
+                    <div class="card-fan-item placeholder" data-index="2">
+                        <img src="images/screenshot-2.png" alt="Screenshot 2" onerror="this.style.display='none'">
+                        <span class="card-number">Screenshot 2</span>
+                    </div>
+                    <div class="card-fan-item placeholder" data-index="3">
+                        <img src="images/screenshot-3.png" alt="Screenshot 3" onerror="this.style.display='none'">
+                        <span class="card-number">Screenshot 3</span>
+                    </div>
+                    <div class="card-fan-item placeholder" data-index="4">
+                        <img src="images/screenshot-4.png" alt="Screenshot 4" onerror="this.style.display='none'">
+                        <span class="card-number">Screenshot 4</span>
+                    </div>
+                    <div class="card-fan-item placeholder" data-index="5">
+                        <img src="images/screenshot-5.png" alt="Screenshot 5" onerror="this.style.display='none'">
+                        <span class="card-number">Screenshot 5</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="fan-instruction"><i class="fas fa-mouse"></i> Click to spread cards &bull; Click image to enlarge
+            </p>
+        </div>
+    </section>
+
+    <!-- Project Details Section -->
+    <section class="project-details-section">
+        <div class="container">
+            <div class="project-details-grid">
+                <div class="project-about">
+                    <h2>About This Project</h2>
+                    <p>
+                        CyberMind is a comprehensive AI-powered cybersecurity assistant designed to help security
+                        professionals and enthusiasts stay ahead of emerging threats. The system leverages
+                        state-of-the-art language models combined with retrieval-augmented generation (RAG) to
+                        provide accurate, context-aware responses to security-related queries.
+                    </p>
+                    <p>
+                        The platform continuously ingests and processes content from over 50 leading cybersecurity
+                        blogs and threat intelligence sources, ensuring that the AI assistant always has access to
+                        the latest information about vulnerabilities, attack techniques, and defensive strategies.
+                    </p>
+
+                    <div class="project-features">
+                        <h3>Key Features</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Real-time threat intelligence from 50+ security sources</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Natural language query processing for security analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Context-aware responses using RAG architecture</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Integration with MITRE ATT&CK framework</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Automated IOC extraction and analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multi-language support for global accessibility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-sidebar">
+                    <div class="sidebar-card glass-card">
+                        <h3>Technology Stack</h3>
+                        <div class="tech-list">
+                            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-item"><i class="fas fa-brain"></i> LangChain</span>
+                            <span class="tech-item"><i class="fas fa-robot"></i> RAG</span>
+                            <span class="tech-item"><i class="fas fa-flask"></i> Flask</span>
+                            <span class="tech-item"><i class="fas fa-database"></i> ChromaDB</span>
+                            <span class="tech-item"><i class="fas fa-cogs"></i> Ollama</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card glass-card">
+                        <h3>Project Info</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span>Category</span>
+                                <span>AI/ML, Security</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Status</span>
+                                <span>Active Development</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Year</span>
+                                <span>2024</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Role</span>
+                                <span>Full Stack Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="../../css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="../../js/translations.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/chat-widget.js"></script>
+    <script>
+        // Card Fan Interaction
+        document.addEventListener('DOMContentLoaded', function () {
+            const cardFan = document.getElementById('cardFan');
+            let isSpread = false;
+
+            // Toggle spread on click
+            cardFan.addEventListener('click', function () {
+                isSpread = !isSpread;
+                cardFan.classList.toggle('spread', isSpread);
+            });
+
+            // Spread on hover (desktop only)
+            if (window.matchMedia('(hover: hover)').matches) {
+                cardFan.addEventListener('mouseenter', function () {
+                    cardFan.classList.add('spread');
+                });
+
+                cardFan.addEventListener('mouseleave', function () {
+                    if (!isSpread) {
+                        cardFan.classList.remove('spread');
+                    }
+                });
+            }
+
+            // Handle image loading - remove placeholder class when image loads
+            const cards = document.querySelectorAll('.card-fan-item img');
+            cards.forEach(img => {
+                img.addEventListener('load', function () {
+                    this.parentElement.classList.remove('placeholder');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

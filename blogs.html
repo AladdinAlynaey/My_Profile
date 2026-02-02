@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI News & Insights - Latest articles on artificial intelligence, machine learning, and tech innovations by Alaadin">
+    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <title>AI Blogs - Alaadin Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/blogs.css">
+
+    <style>
+        /* Page-specific styles */
+        .page-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                    <li><a href="experience.html" class="nav-link" data-translate="nav.experience">Experience</a></li>
+                    <li><a href="education.html" class="nav-link" data-translate="nav.education">Education</a></li>
+                    <li><a href="skills.html" class="nav-link" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                    <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+                    <li><a href="contact.html" class="nav-link" data-translate="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Blogs</span>
+                </nav>
+                <h1 class="page-title">
+                    <span>AI </span>
+                    <span class="gradient-text">News & Insights</span>
+                </h1>
+                <p class="page-description">
+                    Latest articles on artificial intelligence, machine learning, and cutting-edge tech innovations
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section class="blogs-section">
+        <div class="container">
+            <div class="blogs-grid">
+
+                <!-- Featured Blog: OpenClaw -->
+                <a href="blogs/openclaw-ai-assistant/index.html" class="blog-card-featured glass-card">
+                    <div class="blog-image">
+                        <img src="imgs/blogs/openclaw.png" alt="OpenClaw AI Assistant">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI Agents</span>
+                            <span class="blog-date"><i class="far fa-calendar"></i> February 2, 2026</span>
+                        </div>
+                        <h2>OpenClaw: The Viral AI Personal Assistant Taking Over the Internet</h2>
+                        <p class="blog-excerpt">
+                            Meet OpenClaw, the open-source AI personal assistant that's revolutionizing how we interact
+                            with technology.
+                            With over 100,000 GitHub stars and the ability to manage emails, WhatsApp messages, and even
+                            make purchases,
+                            this AI agent is both exciting and raising important security questions.
+                        </p>
+                        <span class="blog-read-more">
+                            Read Full Article <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Blog: Moltbook -->
+                <a href="blogs/moltbook-ai-social-network/index.html" class="blog-card glass-card">
+                    <div class="blog-image">
+                        <img src="imgs/blogs/moltbook.png" alt="Moltbook AI Social Network">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI Society</span>
+                            <span class="blog-date"><i class="far fa-calendar"></i> February 1, 2026</span>
+                        </div>
+                        <h3>Moltbook: A Social Network Where Only AI Agents Can Post</h3>
+                        <p class="blog-excerpt">
+                            Discover Moltbook, the revolutionary platform with 1.5 million AI agents interacting,
+                            forming religions, and debating philosophy - while humans can only observe.
+                        </p>
+                        <span class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Blog: Microsoft Maia 100 -->
+                <a href="blogs/microsoft-maia-100-chip/index.html" class="blog-card glass-card">
+                    <div class="blog-image">
+                        <img src="imgs/blogs/maia-chip.png" alt="Microsoft Maia 100 Chip">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Hardware</span>
+                            <span class="blog-date"><i class="far fa-calendar"></i> February 1, 2026</span>
+                        </div>
+                        <h3>Microsoft's Maia 100 AI Chip Slashes Token Costs by 30%</h3>
+                        <p class="blog-excerpt">
+                            Microsoft's new custom AI chip is now deployed in US data centers, promising significant
+                            cost reductions for AI inference workloads.
+                        </p>
+                        <span class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Blog: Google Personal Intelligence -->
+                <a href="blogs/google-personal-intelligence/index.html" class="blog-card glass-card">
+                    <div class="blog-image">
+                        <img src="imgs/blogs/google-gemini.png" alt="Google Personal Intelligence">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Privacy</span>
+                            <span class="blog-date"><i class="far fa-calendar"></i> January 31, 2026</span>
+                        </div>
+                        <h3>Google's Personal Intelligence: Helpful AI or Privacy Nightmare?</h3>
+                        <p class="blog-excerpt">
+                            Google's new Gemini feature accesses your Gmail, photos, search history, and YouTube data.
+                            Here's what you need to know about the privacy implications.
+                        </p>
+                        <span class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

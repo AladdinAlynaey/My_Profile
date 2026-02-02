@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View all projects by Alaadin - AI Specialist, Data Engineer, and Developer">
+    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <title>Projects - Alaadin Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* Additional styles for projects page */
+        .page-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        .projects-section {
+            padding: 5rem 0;
+        }
+
+        .project-card-large {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        .project-card-large:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project-card-large:nth-child(even)>* {
+            direction: ltr;
+        }
+
+        .project-card-large .project-image {
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .project-card-large .project-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-card-large .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            -webkit-line-clamp: unset;
+        }
+
+        .project-card-large .project-content p {
+            -webkit-line-clamp: 4;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .tech-badge:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .project-card-large {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card-large:nth-child(even) {
+                direction: ltr;
+            }
+
+            .project-card-large .project-image {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#hero" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link" data-translate="nav.about">About</a></li>
+                    <li><a href="index.html#experience" class="nav-link" data-translate="nav.experience">Experience</a>
+                    </li>
+                    <li><a href="index.html#education" class="nav-link" data-translate="nav.education">Education</a>
+                    </li>
+                    <li><a href="index.html#skills" class="nav-link" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="projects.html" class="nav-link active" data-translate="nav.projects">Projects</a></li>
+                    <li><a href="index.html#contact" class="nav-link" data-translate="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Projects</span>
+                </nav>
+                <h1 class="page-title">
+                    <span>My </span>
+                    <span class="gradient-text">Projects</span>
+                </h1>
+                <p class="page-description">
+                    A comprehensive collection of AI, data engineering, and web development projects that showcase
+                    innovative solutions and technical expertise.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <!-- Project Filters -->
+            <div class="projects-filter" style="margin-bottom: 3rem;">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="data">Data Engineering</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+            </div>
+
+            <!-- Featured Projects -->
+            <div style="display: grid; gap: 2rem; margin-bottom: 4rem;">
+                <!-- Project 1: CyberMind -->
+                <div class="project-card-large glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/cybermind.png" alt="CyberMind">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Featured</span>
+                            <span class="project-tag">AI/ML</span>
+                            <span class="project-tag">Cybersecurity</span>
+                        </div>
+                        <h3>CyberMind: AI-Powered Cybersecurity Chat Assistant</h3>
+                        <p>An intelligent cybersecurity assistant that leverages advanced AI models to provide real-time
+                            threat intelligence, security analysis, and recommendations. Integrated with global security
+                            blogs for up-to-date threat information and best practices.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-badge"><i class="fas fa-brain"></i> LangChain</span>
+                            <span class="tech-badge"><i class="fas fa-robot"></i> RAG</span>
+                            <span class="tech-badge"><i class="fas fa-flask"></i> Flask</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="projects/cybermind/index.html" class="btn btn-primary"><i class="fas fa-eye"></i>
+                                View Project</a>
+                            <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: RAG System -->
+                <div class="project-card-large glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/rag.png" alt="RAG System">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Featured</span>
+                            <span class="project-tag">RAG</span>
+                            <span class="project-tag">LLM</span>
+                        </div>
+                        <h3>Advanced RAG System for Document Q&A</h3>
+                        <p>A sophisticated Retrieval-Augmented Generation system that enables intelligent document
+                            question answering. Supports multiple document formats, semantic search, and context-aware
+                            responses using local LLM models for enhanced privacy and control.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-badge"><i class="fas fa-database"></i> ChromaDB</span>
+                            <span class="tech-badge"><i class="fas fa-robot"></i> Ollama</span>
+                            <span class="tech-badge"><i class="fas fa-link"></i> LangChain</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="projects/rag-system/index.html" class="btn btn-primary"><i class="fas fa-eye"></i>
+                                View Project</a>
+                            <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: ETL Pipeline -->
+                <div class="project-card-large glass-card" data-category="data">
+                    <div class="project-image">
+                        <img src="imgs/etl.png" alt="ETL Pipeline">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Featured</span>
+                            <span class="project-tag">ETL</span>
+                            <span class="project-tag">Data Engineering</span>
+                        </div>
+                        <h3>Enterprise ETL Pipeline for Firewall Logs</h3>
+                        <p>A comprehensive Extract-Transform-Load pipeline designed for processing firewall logs at
+                            scale. Implements API integration, data transformation, and multi-database storage with
+                            MongoDB and PostgreSQL, orchestrated by Apache Airflow.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-badge"><i class="fas fa-wind"></i> Airflow</span>
+                            <span class="tech-badge"><i class="fas fa-database"></i> PostgreSQL</span>
+                            <span class="tech-badge"><i class="fas fa-leaf"></i> MongoDB</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="projects/etl-pipeline/index.html" class="btn btn-primary"><i
+                                    class="fas fa-eye"></i> View Project</a>
+                            <a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Projects Grid -->
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 2rem;">
+                <span>All </span>
+                <span class="gradient-text">Projects</span>
+            </h2>
+
+            <div class="projects-grid">
+                <!-- Smaller project cards -->
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/emotions.png" alt="Emotion Detection">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/emotion-detection/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">CNN</span>
+                            <span class="project-tag">Computer Vision</span>
+                        </div>
+                        <h3>Real-Time Emotion Detection</h3>
+                        <p>Real-time emotion detection using CNN model integrated with web application.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="data">
+                    <div class="project-image">
+                        <img src="imgs/scrape.png" alt="Web Scraping">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/web-scraping/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">LLM</span>
+                            <span class="project-tag">Scraping</span>
+                        </div>
+                        <h3>Smart Web Scraping Pipeline</h3>
+                        <p>LLM-powered content extraction pipeline with intelligent checkpointing.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/query.png" alt="AI Query Builder">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/ai-query-builder/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">SQL</span>
+                        </div>
+                        <h3>AI Query Builder</h3>
+                        <p>Schema-aware natural language interface for database queries.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/Medicine.png" alt="Medicine Recognition">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/medicine-app/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Image Recognition</span>
+                            <span class="project-tag">Healthcare</span>
+                        </div>
+                        <h3>AI Medicine Information App</h3>
+                        <p>AI-powered medicine information with image recognition and interactive chat.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="data">
+                    <div class="project-image">
+                        <img src="imgs/videogames.png" alt="Video Game Analysis">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/video-game-sales/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">ML</span>
+                            <span class="project-tag">Analytics</span>
+                        </div>
+                        <h3>Video Game Sales Analysis</h3>
+                        <p>Linear regression model for video game sales analysis with web application.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/mcp.png" alt="MCP Framework">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/mcp-office/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Automation</span>
+                        </div>
+                        <h3>MCP Office Control Framework</h3>
+                        <p>Model Context Protocol for AI-powered control of Microsoft Office suite.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/security.png" alt="Security Assistant">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/security-assistant/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">LLM</span>
+                            <span class="project-tag">Security</span>
+                        </div>
+                        <h3>Security Assistant</h3>
+                        <p>Local LLM-powered system analysis and command automation tool.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/legal.png" alt="Legal Inquiry System">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/legal-inquiry/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Legal</span>
+                        </div>
+                        <h3>Global Legal Inquiry System</h3>
+                        <p>AI-powered legal information system for global law queries.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/food.png" alt="ChefAI">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/chef-ai/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Image Recognition</span>
+                            <span class="project-tag">AI</span>
+                        </div>
+                        <h3>ChefAI Recipe Recommendation</h3>
+                        <p>Ingredient recognition and personalized recipe recommendation system.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/exam.png" alt="Exam Generator">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/exam-generator/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">LLM</span>
+                            <span class="project-tag">Education</span>
+                        </div>
+                        <h3>Automated Exam Generator</h3>
+                        <p>Automated exam generation system from educational files.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/boycott.png" alt="Boycott Assistant">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/boycott-app/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Image Recognition</span>
+                            <span class="project-tag">App</span>
+                        </div>
+                        <h3>Boycott Assistant App</h3>
+                        <p>Image-based product recognition with localized alternatives.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/image.png" alt="Image Generation">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/image-generation/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Diffusion</span>
+                            <span class="project-tag">AI Art</span>
+                        </div>
+                        <h3>Image Generation System</h3>
+                        <p>Image generation and in-place editing system using AI.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="web">
+                    <div class="project-image">
+                        <img src="imgs/music.png" alt="Music Manager">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/music-manager/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Web</span>
+                            <span class="project-tag">App</span>
+                        </div>
+                        <h3>Smart Music Manager</h3>
+                        <p>Intelligent music management application with advanced features.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/handtrack.png" alt="Hand Tracking">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/hand-tracking/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Computer Vision</span>
+                            <span class="project-tag">Control</span>
+                        </div>
+                        <h3>Hand Tracking Controller</h3>
+                        <p>Control computer brightness & volume using hand gestures.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/dinasor.png" alt="Dinosaur Game">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/dinosaur-game/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Genetic Algorithm</span>
+                            <span class="project-tag">Game</span>
+                        </div>
+                        <h3>AI Dinosaur Game</h3>
+                        <p>Dinosaur game using genetic algorithm to learn how to play.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/snake.png" alt="Snake Game">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/snake-game/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">AI</span>
+                            <span class="project-tag">Game</span>
+                        </div>
+                        <h3>Smart Snake Game</h3>
+                        <p>Python snake game with AI autocomplete and adaptive difficulty.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/telegrambot.png" alt="Telegram Bot">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/telegram-bot/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Bot</span>
+                            <span class="project-tag">LLM</span>
+                        </div>
+                        <h3>AI Telegram Bot</h3>
+                        <p>Telegram bot with local Ollama model for real-time chat.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/gpt.png" alt="Offline Chatbot">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/offline-chatbot/index.html" class="project-link"
+                                    title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">LLM</span>
+                            <span class="project-tag">Offline</span>
+                        </div>
+                        <h3>Offline Chatbot</h3>
+                        <p>Offline chatbot using local models from Ollama.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/drone.png" alt="Pathfinding">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="projects/pathfinding/index.html" class="project-link" title="View Project"><i
+                                        class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">A*</span>
+                            <span class="project-tag">Algorithm</span>
+                        </div>
+                        <h3>A* Pathfinding</h3>
+                        <p>Pathfinding with A* algorithm to avoid obstacles and reach goal.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="web">
+                    <div class="project-image">
+                        <img src="imgs/apex.png" alt="Oracle Apex">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Oracle Apex</span>
+                            <span class="project-tag">Database</span>
+                        </div>
+                        <h3>Football Teams Management</h3>
+                        <p>Complete football teams management system built with Oracle Apex.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="web">
+                    <div class="project-image">
+                        <img src="imgs/dept.png" alt="Debt Management">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Web</span>
+                            <span class="project-tag">Finance</span>
+                        </div>
+                        <h3>Debt Management System</h3>
+                        <p>Comprehensive debt management and tracking system.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="web">
+                    <div class="project-image">
+                        <img src="imgs/chat php.png" alt="Chat Application">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <h3>Chat Application</h3>
+                        <p>Real-time chat application using PHP and MySQL.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="web">
+                    <div class="project-image">
+                        <img src="imgs/webtoll.png" alt="Floating AI Support">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">RAG</span>
+                            <span class="project-tag">Widget</span>
+                        </div>
+                        <h3>Floating AI Support Tool</h3>
+                        <p>Floating AI support tool with RAG capabilities for websites.</p>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="imgs/anime.png" alt="Anime Recommendation">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" title="View Project"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Similarity</span>
+                            <span class="project-tag">ML</span>
+                        </div>
+                        <h3>Anime Recommendation System</h3>
+                        <p>Anime recommendation based on similarity analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

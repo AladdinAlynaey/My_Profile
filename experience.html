@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Professional experience of Alaadin - AI Specialist, Data Engineer, and Mathematics Teacher">
+    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <title>Experience - Alaadin Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* Page-specific styles */
+        .page-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: calc(var(--header-height) + 4rem);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        /* Experience Page Styles */
+        .experience-section {
+            padding: 5rem 0;
+        }
+
+        .experience-full-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .experience-full-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        [dir="rtl"] .experience-full-card::before {
+            left: auto;
+            right: 0;
+        }
+
+        .experience-full-card:hover {
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+
+        .experience-full-header {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .experience-full-logo {
+            width: 100px;
+            height: 100px;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .experience-full-logo img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .experience-full-info {
+            flex: 1;
+        }
+
+        .experience-full-info h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-full-info h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .experience-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .experience-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .experience-meta-item i {
+            color: var(--accent-primary);
+        }
+
+        .experience-badge {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .experience-full-body h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .experience-full-body p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .responsibilities-list {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .responsibility-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-fast);
+        }
+
+        .responsibility-item:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .responsibility-item i {
+            color: var(--accent-primary);
+            margin-top: 0.125rem;
+        }
+
+        .responsibility-item span {
+            color: var(--text-secondary);
+        }
+
+        .skills-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .skill-badge i {
+            color: var(--accent-primary);
+        }
+
+        .view-details-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .view-details-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .view-details-link i {
+            transition: transform var(--transition-fast);
+        }
+
+        .view-details-link:hover i {
+            transform: translateX(5px);
+        }
+
+        [dir="rtl"] .view-details-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .achievement-item i {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+        }
+
+        .achievement-item span {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .experience-full-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .experience-meta {
+                justify-content: center;
+            }
+
+            .experience-full-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imgs/me.jpg" alt="Alaadin" class="logo-image">
+                <span class="logo-text">Alaadin</span>
+            </a>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                    <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                    <li><a href="experience.html" class="nav-link active" data-translate="nav.experience">Experience</a>
+                    </li>
+                    <li><a href="education.html" class="nav-link" data-translate="nav.education">Education</a></li>
+                    <li><a href="skills.html" class="nav-link" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                    <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+                    <li><a href="contact.html" class="nav-link" data-translate="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+
+                <button class="control-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Experience</span>
+                </nav>
+                <h1 class="page-title">
+                    <span>Professional </span>
+                    <span class="gradient-text">Experience</span>
+                </h1>
+                <p class="page-description">
+                    A journey through my career in AI, data engineering, and education
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+
+            <!-- Experience 1: AI Specialist at DeepSafer -->
+            <div class="experience-full-card glass-card">
+                <div class="experience-full-header">
+                    <div class="experience-full-logo">
+                        <img src="imgs/deepsafer-removebg-preview.png" alt="DeepSafer">
+                    </div>
+                    <div class="experience-full-info">
+                        <span class="experience-badge">Current Position</span>
+                        <h2>AI Specialist</h2>
+                        <h3>DeepSafer Company</h3>
+                        <div class="experience-meta">
+                            <div class="experience-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024 - Present</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Yemen</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Full-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-full-body">
+                    <p>
+                        As an AI Specialist at DeepSafer, I lead the development of cutting-edge AI solutions
+                        focused on cybersecurity and threat intelligence. My role involves designing and implementing
+                        advanced RAG (Retrieval-Augmented Generation) systems that enhance security analysis and
+                        decision-making processes.
+                    </p>
+
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Designing and implementing RAG systems for intelligent document processing and threat
+                                analysis</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Building ETL pipelines for processing large volumes of security data</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Integrating LLMs and AI models into security workflows for automated analysis</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Developing Python-based tools and applications for data engineering tasks</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Collaborating with security teams to identify AI-driven solutions for complex
+                                challenges</span>
+                        </div>
+                    </div>
+
+                    <h4><i class="fas fa-trophy"></i> Key Achievements</h4>
+                    <div class="achievements-grid">
+                        <div class="achievement-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Built CyberMind AI Assistant</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-database"></i>
+                            <span>Implemented RAG systems</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-cogs"></i>
+                            <span>Automated analysis workflows</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Improved data processing efficiency</span>
+                        </div>
+                    </div>
+
+                    <h4><i class="fas fa-code"></i> Technologies Used</h4>
+                    <div class="skills-used">
+                        <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-badge"><i class="fas fa-brain"></i> LangChain</span>
+                        <span class="skill-badge"><i class="fas fa-robot"></i> LLMs</span>
+                        <span class="skill-badge"><i class="fas fa-search"></i> RAG</span>
+                        <span class="skill-badge"><i class="fas fa-database"></i> PostgreSQL</span>
+                        <span class="skill-badge"><i class="fas fa-leaf"></i> MongoDB</span>
+                        <span class="skill-badge"><i class="fas fa-flask"></i> Flask</span>
+                        <span class="skill-badge"><i class="fas fa-wind"></i> Airflow</span>
+                    </div>
+
+                    <a href="experience/deepsafer/index.html" class="view-details-link">
+                        <span>View Full Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Experience 2: AI Trainer at AI Approach -->
+            <div class="experience-full-card glass-card">
+                <div class="experience-full-header">
+                    <div class="experience-full-logo">
+                        <img src="imgs/ai_aproach.png" alt="AI Approach">
+                    </div>
+                    <div class="experience-full-info">
+                        <h2>AI Trainer & Projects Developer</h2>
+                        <h3>AI Approach</h3>
+                        <div class="experience-meta">
+                            <div class="experience-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Yemen</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Contract</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-full-body">
+                    <p>
+                        Led comprehensive AI training programs and developed innovative AI solutions for diverse
+                        clients.
+                        Specialized in designing custom AI projects that bridge technical complexity with user-friendly
+                        interfaces, using cutting-edge technologies including LLMs, RAG systems, and computer vision.
+                    </p>
+
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Delivering AI training programs covering machine learning, deep learning, and
+                                NLP</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Developing custom AI solutions for clients across various industries</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mentoring teams on AI best practices and implementation strategies</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Creating educational content and hands-on workshops</span>
+                        </div>
+                    </div>
+
+                    <h4><i class="fas fa-code"></i> Technologies Used</h4>
+                    <div class="skills-used">
+                        <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-badge"><i class="fas fa-brain"></i> TensorFlow</span>
+                        <span class="skill-badge"><i class="fas fa-fire"></i> PyTorch</span>
+                        <span class="skill-badge"><i class="fas fa-eye"></i> Computer Vision</span>
+                        <span class="skill-badge"><i class="fas fa-comments"></i> NLP</span>
+                        <span class="skill-badge"><i class="fas fa-robot"></i> LLMs</span>
+                    </div>
+
+                    <a href="experience/ai-approach/index.html" class="view-details-link">
+                        <span>View Full Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Experience 3: Mathematics Teacher -->
+            <div class="experience-full-card glass-card">
+                <div class="experience-full-header">
+                    <div class="experience-full-logo">
+                        <img src="imgs/school-removebg-preview.png" alt="Schools">
+                    </div>
+                    <div class="experience-full-info">
+                        <h2>Mathematics Teacher</h2>
+                        <h3>Multiple Prestigious Schools</h3>
+                        <div class="experience-meta">
+                            <div class="experience-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2019 - 2023</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Yemen</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Full-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-full-body">
+                    <p>
+                        Taught mathematics at several prestigious educational institutions including Ar-Rasheed Modern
+                        Schools,
+                        Future Leaders School, Rawabi Haddah, and Al-Nasser Institute. Focused on fostering deep
+                        understanding
+                        of mathematical concepts and enhancing students' problem-solving skills.
+                    </p>
+
+                    <h4><i class="fas fa-school"></i> Schools</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Ar-Rasheed Modern Schools</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Future Leaders School</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Rawabi Haddah</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Al-Nasser Institute</span>
+                        </div>
+                    </div>
+
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Teaching mathematics to students across various grade levels</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Developing engaging lesson plans and educational materials</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Providing individual support to help students overcome learning challenges</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Preparing students for standardized tests and academic competitions</span>
+                        </div>
+                    </div>
+
+                    <h4><i class="fas fa-book"></i> Subjects Taught</h4>
+                    <div class="skills-used">
+                        <span class="skill-badge"><i class="fas fa-calculator"></i> Algebra</span>
+                        <span class="skill-badge"><i class="fas fa-shapes"></i> Geometry</span>
+                        <span class="skill-badge"><i class="fas fa-infinity"></i> Calculus</span>
+                        <span class="skill-badge"><i class="fas fa-chart-bar"></i> Statistics</span>
+                        <span class="skill-badge"><i class="fas fa-square-root-alt"></i> Trigonometry</span>
+                    </div>
+
+                    <a href="experience/mathematics-teacher/index.html" class="view-details-link">
+                        <span>View Full Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Experience 4: HR Specialist -->
+            <div class="experience-full-card glass-card">
+                <div class="experience-full-header">
+                    <div class="experience-full-logo">
+                        <img src="imgs/education-removebg-preview.png" alt="Education Office">
+                    </div>
+                    <div class="experience-full-info">
+                        <h2>Human Resources Specialist</h2>
+                        <h3>Office of Technical Education and Vocational Training</h3>
+                        <div class="experience-meta">
+                            <div class="experience-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2018</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Yemen</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Full-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-full-body">
+                    <p>
+                        Contributed to the Human Resources department at the Office of Technical Education and
+                        Vocational
+                        Training, supporting various HR functions and initiatives to improve organizational efficiency.
+                    </p>
+
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Managing employee records and documentation</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Assisting with recruitment and onboarding processes</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Supporting payroll and benefits administration</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Coordinating training and development programs</span>
+                        </div>
+                    </div>
+
+                    <a href="experience/hr-specialist/index.html" class="view-details-link">
+                        <span>View Full Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Experience 5: Field Recorder -->
+            <div class="experience-full-card glass-card">
+                <div class="experience-full-header">
+                    <div class="experience-full-logo">
+                        <img src="imgs/tropicaldata-removebg-preview.png" alt="Tropical Data">
+                    </div>
+                    <div class="experience-full-info">
+                        <h2>Field Recorder</h2>
+                        <h3>Tropical Data Organization</h3>
+                        <div class="experience-meta">
+                            <div class="experience-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2017</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Ibb & Hodeidah, Yemen</span>
+                            </div>
+                            <div class="experience-meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Contract</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-full-body">
+                    <p>
+                        Served as a Recorder in a comprehensive field survey for trachoma disease across the
+                        governorates
+                        of Ibb and Hodeidah. This experience provided valuable insights into public health data
+                        collection
+                        and field research methodology.
+                    </p>
+
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <div class="responsibilities-list">
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Collecting and recording field survey data accurately</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Ensuring data quality and completeness during surveys</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Collaborating with health teams during field operations</span>
+                        </div>
+                        <div class="responsibility-item">
+                            <i class="fas fa-check"></i>
+                            <span>Documenting findings according to research protocols</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>© 2026 Alaadin. All rights reserved.</p>
+                <p>Made by Alaadin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <link rel="stylesheet" href="css/chat-widget.css">
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-widget.js"></script>
+</body>
+
+</html>
